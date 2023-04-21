@@ -9,12 +9,12 @@ function App() {
   const [carts, setCart] = useState<any>([]);
   const [openCart, setOpenCart] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
-  const [results, setResult] = useState([])
+  const [results, setResult] = useState([]);
   const Search = (value) => {
     const filteredComponents = products.filter((component) =>
       component.name.toLowerCase().includes(value.toLowerCase())
     );
-    setResult(filteredComponents)
+    setResult(filteredComponents);
   };
 
   const removeFromCart = (product) => {
@@ -57,17 +57,17 @@ function App() {
     <Fragment>
       <>
         <header id="main-header">
-          <div>
-            <a href="mailto:paliniabread101@gmail.com" className="contact">
-              <h4>Contact Seller</h4>
-              <span className="fa fa-envelope" />
-            </a>
-          </div>
 
-          <div className="">
-            <h1 className="h1">Palinia Bread</h1>
+          <div className="header-lt">
+            <h1>Palinia Bread</h1>
             <h3>BY PALINIA BREAD</h3>
-            <h4>Welcome to Palinia Bread</h4>
+           
+            <a href="mailto:paliniabread101@gmail.com"  className="contact">
+              <div className="contact">
+                <h4>Contact Seller</h4>
+                <span className="fa fa-envelope" />
+              </div>
+            </a>
           </div>
 
           <div className="cart-icon" onClick={() => setOpenCart(true)}>
@@ -82,13 +82,14 @@ function App() {
         </header>
 
         <div className="search-wrapper">
+        <h4 style={{margin:"10px",textAlign:"center",fontSize:"2rem"}}>Welcome to Palinia Bread</h4>
           <div className="search-box">
             <label htmlFor="search" className="fa fa-search"></label>
             <input
               type="search"
               onChange={(e) => {
-                // setSearchTerm(e.target.value)
-                Search(e.target.value)
+                setSearchTerm(e.target.value)
+                Search(e.target.value);
               }}
               name="search"
               placeholder="Search for a Product"
@@ -97,31 +98,33 @@ function App() {
         </div>
 
         <ul id="products-list">
-          {
-            searchTerm.match(/$\s+/i) ? products.map((product: any, i: number) => {
-              // console.log(carts)
-              return (
-                <Product
-                  openCart={setOpenCart}
-                  _product={product}
-                  key={i}
-                  setCart={setCart}
-                  carts={carts}
-                />
-              );
-            }) : results.length > 0 ? results.map((product: any, i: number) => {
-              // console.log(carts)
-              return (
-                <Product
-                  openCart={setOpenCart}
-                  _product={product}
-                  key={i}
-                  setCart={setCart}
-                  carts={carts}
-                />
-              );
-            }) : "No Products Matched"
-          }
+          {searchTerm.match(/$\s+/i) || searchTerm == ""
+            ? products.map((product: any, i: number) => {
+                // console.log(carts)
+                return (
+                  <Product
+                    openCart={setOpenCart}
+                    _product={product}
+                    key={i}
+                    setCart={setCart}
+                    carts={carts}
+                  />
+                );
+              })
+            : results.length > 0
+            ? results.map((product: any, i: number) => {
+                // console.log(carts)
+                return (
+                  <Product
+                    openCart={setOpenCart}
+                    _product={product}
+                    key={i}
+                    setCart={setCart}
+                    carts={carts}
+                  />
+                );
+              })
+            : "No Products Matched"}
         </ul>
       </>
       {openCart && (
