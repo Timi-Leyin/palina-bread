@@ -57,7 +57,9 @@ function App() {
     <Fragment>
       <>
         <header id="main-header">
-
+    <div className="empty-div">
+   <div onClick={()=> window.history.back()} className="fa fa-arrow-left" style={{fontSize:"25px",cursor:"pointer"}}></div>
+    </div>
           <div className="header-lt">
             <h1>Palinia Bread</h1>
             <h3>BY PALINIA BREAD</h3>
@@ -82,7 +84,7 @@ function App() {
         </header>
 
         <div className="search-wrapper">
-        <h4 style={{margin:"10px",textAlign:"center",fontSize:"2rem"}}>Welcome to Palinia Bread</h4>
+        <h4 style={{margin:"10px",textAlign:"center",fontSize:"1.6rem"}}>Welcome to Palinia Bread</h4>
           <div className="search-box">
             <label htmlFor="search" className="fa fa-search"></label>
             <input
