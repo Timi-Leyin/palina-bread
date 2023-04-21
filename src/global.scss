@@ -6,7 +6,7 @@
 }
 
 :root {
-  --accent: rgb(193, 34, 48);
+  --accent: #ad333c;
 }
 
 body {
@@ -44,7 +44,7 @@ body {
 .search-box {
   display: flex;
   gap: 10px;
-  background-color: #a71d2a;
+  background-color:#a71d2a;
   padding: 20px 10px;
   border-radius: 10px;
   max-width: 500px;
@@ -72,7 +72,7 @@ ul {
 }
 li {
   margin-bottom: 10px;
-  background-color: #a71d2a;
+  background-color:#a71d2a;
   padding: 10px;
   height: 350px;
   /* margin: 50px auto; */
@@ -89,7 +89,7 @@ li {
 }
 .product img {
   height: 200px;
-  width: 70%;
+  width: 100%;
   margin: 0 auto;
   object-fit: cover;
 }
@@ -180,7 +180,7 @@ li {
 }
 .checkout-btn {
   padding: 20px;
-  background: #a71d2a;
+  background: var(--accent);
   color:#fff;
   border: none;
   border-radius: 20px;
