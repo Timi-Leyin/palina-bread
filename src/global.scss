@@ -135,6 +135,7 @@ li {
 #cart .content {
   background: #fff;
   width: 500px;
+  overflow-y: scroll;
   float: right;
   padding: 10px;
   color: #000 !important;
@@ -154,7 +155,10 @@ li {
   gap: 10px;
   font-size: 2rem;
 }
-
+.continue-shopping{
+  background-color: #eee !important;
+  color:#222 !important
+}
 .quantity-btn{
   display: flex;
   justify-content: space-between;
@@ -200,9 +204,11 @@ li {
   background: var(--accent);
   color:#fff;
   border: none;
+  display: flex;
+  justify-content: center;
   border-radius: 20px;
-  width: 100%;
-  margin: 20px auto;
+  width: 90%;
+  margin: 20px auto 5px auto;
 }
 
 .add-to-cart{

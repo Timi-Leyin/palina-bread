@@ -177,6 +177,7 @@ const Cart = ({ close, carts, setCart }) => {
             ) : (
               <h4 className="no-item">No Items in Cart</h4>
             )}
+            <button className="checkout-btn continue-shopping"  onClick={close}>Continue Shopping</button>
           </div>
         </>
       ) : (
