@@ -1,6 +1,32 @@
 import React, { useEffect, useState } from "react";
 import { PaystackButton } from "react-paystack";
 const CartItem = ({ item, carts, setCart }) => {
+
+  const deleteFromCart = (product)=>{
+    const filteredComponents = carts.filter((component) =>
+      component.product.id != product.id
+    );
+    
+    setCart(filteredComponents)
+  }
+
+
+  const addToCart = (product) => {
+    const existingItem = carts.find((item) => item.product.id === product.id);
+    console.log(existingItem);
+    if (existingItem) {
+      setCart(
+        carts.map((item) =>
+          item.product.id === product.id
+            ? { ...item, quantity: item.quantity + 1 }
+            : item
+        )
+      );
+    } else {
+      setCart([...carts, { product, quantity: 1 }]);
+    }
+  };
+
   const removeFromCart = (product) => {
     const existingItem = carts.find((citem) => citem.product.id === product.id);
     // console.log(existingItem);
@@ -29,9 +55,18 @@ const CartItem = ({ item, carts, setCart }) => {
         </div>
 
         <div className="item-rt">
-          Q: {item.quantity}
+          {/* Q: {item.quantity} */}
+          <div className="quantity-btn">
+            <span
+              className="fa fa-minus"
+              onClick={() => removeFromCart(item.product)}
+            ></span>
+            <span className="q">{item.quantity}</span>
+            <span className="fa fa-plus" 
+            onClick={()=> addToCart(item.product) }></span>
+          </div>
           <div
-            onClick={() => removeFromCart(item.product)}
+            onClick={() => deleteFromCart(item.product)}
             className="fa fa-trash"
           />
         </div>
@@ -48,12 +83,12 @@ const Cart = ({ close, carts, setCart }) => {
   const [email, setEmail] = useState("");
   useEffect(() => {
     // let eqsum = 0;
-    const eqsum = carts.reduce((sum,current)=>{
-      sum+= ((current.product.price) * current.quantity)
-       return sum
-      },0)
-      setSum(eqsum)
-      // console.log(eqsum)
+    const eqsum = carts.reduce((sum, current) => {
+      sum += current.product.price * current.quantity;
+      return sum;
+    }, 0);
+    setSum(eqsum);
+    // console.log(eqsum)
   }, [carts]);
   const publicKey = "pk_live_148efb0d49265c558c5d40a42af53ffdb92b4d4b";
 
